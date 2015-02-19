@@ -744,9 +744,9 @@ static const yytype_uint16 yyrline[] =
      727,   728,   729,   729,   732,   732,   740,   745,   746,   747,
      751,   752,   753,   754,   760,   760,   769,   770,   775,   776,
      781,   781,   791,   793,   794,   799,   800,   807,   809,   816,
-     816,   826,   828,   834,   835,   841,   842,   843,   844,   845,
-     846,   851,   851,   863,   865,   866,   871,   872,   873,   874,
-     875,   876
+     816,   828,   830,   836,   837,   843,   844,   845,   846,   847,
+     848,   853,   853,   865,   867,   868,   873,   874,   875,   876,
+     877,   878
 };
 #endif
 
@@ -3610,7 +3610,9 @@ yyreduce:
 #line 816 "syntax/tjs.y"
     { tTJSExprNode *node =
 										  cc->MakeNP0(T_CONSTVAL);
-										  iTJSDispatch2 * dsp = TJSCreateArrayObject();
+										  iTJSDispatch2 *dsp;
+										  iTJSDispatch2 *dummy = TJSCreateArrayObject(&dsp);
+										  dummy->Release();
 										  node->SetValue(tTJSVariant(dsp, dsp));
 										  dsp->Release();
 										  cc->PushCurrentNode(node); ;}
@@ -3619,56 +3621,56 @@ yyreduce:
   case 250:
 
 /* Line 1455 of yacc.c  */
-#line 823 "syntax/tjs.y"
+#line 825 "syntax/tjs.y"
     { (yyval.np) = cn; cc->PopCurrentNode(); ;}
     break;
 
   case 255:
 
 /* Line 1455 of yacc.c  */
-#line 841 "syntax/tjs.y"
+#line 843 "syntax/tjs.y"
     { cn->AddArrayElement(- lx->GetValue((yyvsp[(2) - (2)].num))); ;}
     break;
 
   case 256:
 
 /* Line 1455 of yacc.c  */
-#line 842 "syntax/tjs.y"
+#line 844 "syntax/tjs.y"
     { cn->AddArrayElement(+ lx->GetValue((yyvsp[(2) - (2)].num))); ;}
     break;
 
   case 257:
 
 /* Line 1455 of yacc.c  */
-#line 843 "syntax/tjs.y"
+#line 845 "syntax/tjs.y"
     { cn->AddArrayElement(lx->GetValue((yyvsp[(1) - (1)].num))); ;}
     break;
 
   case 258:
 
 /* Line 1455 of yacc.c  */
-#line 844 "syntax/tjs.y"
+#line 846 "syntax/tjs.y"
     { cn->AddArrayElement(tTJSVariant());  ;}
     break;
 
   case 259:
 
 /* Line 1455 of yacc.c  */
-#line 845 "syntax/tjs.y"
+#line 847 "syntax/tjs.y"
     { cn->AddArrayElement((yyvsp[(1) - (1)].np)->GetValue()); ;}
     break;
 
   case 260:
 
 /* Line 1455 of yacc.c  */
-#line 846 "syntax/tjs.y"
+#line 848 "syntax/tjs.y"
     { cn->AddArrayElement((yyvsp[(1) - (1)].np)->GetValue()); ;}
     break;
 
   case 261:
 
 /* Line 1455 of yacc.c  */
-#line 851 "syntax/tjs.y"
+#line 853 "syntax/tjs.y"
     { tTJSExprNode *node =
 										  cc->MakeNP0(T_CONSTVAL);
 										  iTJSDispatch2 * dsp = TJSCreateDictionaryObject();
@@ -3680,56 +3682,56 @@ yyreduce:
   case 262:
 
 /* Line 1455 of yacc.c  */
-#line 858 "syntax/tjs.y"
+#line 860 "syntax/tjs.y"
     { (yyval.np) = cn; cc->PopCurrentNode(); ;}
     break;
 
   case 266:
 
 /* Line 1455 of yacc.c  */
-#line 871 "syntax/tjs.y"
+#line 873 "syntax/tjs.y"
     { cn->AddDictionaryElement(lx->GetValue((yyvsp[(1) - (4)].num)), - lx->GetValue((yyvsp[(4) - (4)].num))); ;}
     break;
 
   case 267:
 
 /* Line 1455 of yacc.c  */
-#line 872 "syntax/tjs.y"
+#line 874 "syntax/tjs.y"
     { cn->AddDictionaryElement(lx->GetValue((yyvsp[(1) - (4)].num)), + lx->GetValue((yyvsp[(4) - (4)].num))); ;}
     break;
 
   case 268:
 
 /* Line 1455 of yacc.c  */
-#line 873 "syntax/tjs.y"
+#line 875 "syntax/tjs.y"
     { cn->AddDictionaryElement(lx->GetValue((yyvsp[(1) - (3)].num)), lx->GetValue((yyvsp[(3) - (3)].num))); ;}
     break;
 
   case 269:
 
 /* Line 1455 of yacc.c  */
-#line 874 "syntax/tjs.y"
+#line 876 "syntax/tjs.y"
     { cn->AddDictionaryElement(lx->GetValue((yyvsp[(1) - (3)].num)), tTJSVariant()); ;}
     break;
 
   case 270:
 
 /* Line 1455 of yacc.c  */
-#line 875 "syntax/tjs.y"
+#line 877 "syntax/tjs.y"
     { cn->AddDictionaryElement(lx->GetValue((yyvsp[(1) - (3)].num)), (yyvsp[(3) - (3)].np)->GetValue()); ;}
     break;
 
   case 271:
 
 /* Line 1455 of yacc.c  */
-#line 876 "syntax/tjs.y"
+#line 878 "syntax/tjs.y"
     { cn->AddDictionaryElement(lx->GetValue((yyvsp[(1) - (3)].num)), (yyvsp[(3) - (3)].np)->GetValue()); ;}
     break;
 
 
 
 /* Line 1455 of yacc.c  */
-#line 3730 "tjs.tab.cpp"
+#line 3732 "tjs.tab.cpp"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -3941,7 +3943,7 @@ yyreturn:
 
 
 /* Line 1675 of yacc.c  */
-#line 881 "syntax/tjs.y"
+#line 883 "syntax/tjs.y"
 
 
 

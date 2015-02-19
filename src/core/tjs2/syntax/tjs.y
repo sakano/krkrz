@@ -815,7 +815,9 @@ dic_dummy_elm_opt
 const_inline_array
 	: "(" "const" ")" "[" 				{ tTJSExprNode *node =
 										  cc->MakeNP0(T_CONSTVAL);
-										  iTJSDispatch2 * dsp = TJSCreateArrayObject();
+										  iTJSDispatch2 *dsp;
+										  iTJSDispatch2 *dummy = TJSCreateArrayObject(&dsp);
+										  dummy->Release();
 										  node->SetValue(tTJSVariant(dsp, dsp));
 										  dsp->Release();
 										  cc->PushCurrentNode(node); }
