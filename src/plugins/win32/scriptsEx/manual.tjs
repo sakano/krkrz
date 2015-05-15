@@ -89,4 +89,25 @@ class Scripts {
 	 *  カウンタで何千～万回に1回等の間隔で呼び出すようにすると効果的かと思われます。
 	 */
 	function rehash();
+
+	/**
+	 * 指定オブジェクトのPropSet/Getを呼ぶ
+	 * @param obj 対象オブジェクト
+	 * @param member メンバ名(typeof member == "Integer"ならProp{Set,Get}ByNumを呼ぶ)
+	 * @param value セットする値(propSetのみ)
+	 * @param flag フラグ(Scripts.pf* の"|"(or)による組み合わせ指定，もしくは0)
+	 *             Scripts.pfMemberEnsure    : (set時)メンバを新規追加する場合に指定（ない場合は既存メンバのみ書き換え可能）
+	 *             Scripts.pfMemberMustExist : (get時)メンバがない場合はエラー（辞書のundefinedもvoidを返さずエラーになります）
+	 *             Scripts.pfIgnoreProp      : (get/set時)プロパティの動作を無視（TJSの&指定と同じ動作です）
+	 *             Scripts.pfHiddenMember    : (set時)隠しメンバ指定（assignStruct/saveStruct等のEnumMembers系の処理で無視されます）
+	 *             Scripts.pfStaticMember    : (set時)Staticメンバ指定（クラスオブジェクトなどに使用します）
+	 * @return 取得した値(propGetのみ，set時はvoid)
+	 */
+	function propSet(obj, member, value, flag=Scripts.pfMemberEnsure);
+	function propGet(obj, member, flag=Scripts.pfMemberMustExist);
+	var pfMemberEnsure    = 0x00000200; //TJS_MEMBERENSURE
+	var pfMemberMustExist = 0x00000400; //TJS_MEMBERMUSTEXIST
+	var pfIgnoreProp      = 0x00000800; //TJS_IGNOREPROP
+	var pfHiddenMember    = 0x00001000; //TJS_HIDDENMEMBER
+	var pfStaticMember    = 0x00010000; //TJS_STATICMEMBER
 }

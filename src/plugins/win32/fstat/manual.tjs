@@ -51,6 +51,7 @@ class Storages {
 	 * @param toFile 移動先パス
 	 * @return 実際に移動されたら true
 	 * 移動対象ファイルが実在し、移動先パスにファイルが無い場合のみ移動されます
+	 * ※パスはNormalize/Placedチェックされないのでフルパスで記入のこと
 	 */
 	function moveFile(fromFile, toFile);
 
@@ -84,6 +85,14 @@ class Storages {
 	 * @return 実際に作成できたら true
 	 */
 	function createDirectory(dir);	// by Kiyobee
+
+	/**
+	 * パスの正規化を行なわずディレクトリを作成する
+     * (ディレクトリ名が小文字に変換されない)
+	 * @param dir ディレクトリ名
+	 * @return 実際に作成できたら true
+	 */
+	function createDirectoryNoNormalize(dir);	// by Kiyobee
 
 	/**
 	 * カレントディレクトリを変更する
@@ -184,6 +193,7 @@ class Storages {
 	 * @param to コピー先ファイル
 	 * @param failIfExist ファイルが存在するときに失敗するなら ture、上書きするなら false
 	 * @return 実際にコピーできたら true
+	 * ※toには「file://./c/～」のようにフルパスで記述しないと例外が発生します
 	 */
 	function copyFileNoNormalize(from, to, failIfExist);
 
@@ -228,7 +238,7 @@ class Storages {
 
 
 /**
- * @description テンポラリファイルを管理するクラス
+ * テンポラリファイルを管理するクラス
  * あらかじめテンポラリ化したいファイルをこれにエントリして、
  * その後このオブジェクトを破棄すると、
  * ファイルクローズ時に自動的に消去されます

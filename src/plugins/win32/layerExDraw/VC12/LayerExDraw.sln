@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2013 for Windows Desktop
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scriptsEx", "scriptsEx.vcxproj", "{99495428-58B1-484B-948A-B744811A4909}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "layerExDraw", "layerExDraw.vcxproj", "{7C2E6A9C-9C78-46AB-AFB0-44EC60F0F7E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{99495428-58B1-484B-948A-B744811A4909}.Debug|Win32.ActiveCfg = Debug|Win32
-		{99495428-58B1-484B-948A-B744811A4909}.Debug|Win32.Build.0 = Debug|Win32
-		{99495428-58B1-484B-948A-B744811A4909}.Release|Win32.ActiveCfg = Release|Win32
-		{99495428-58B1-484B-948A-B744811A4909}.Release|Win32.Build.0 = Release|Win32
+		{7C2E6A9C-9C78-46AB-AFB0-44EC60F0F7E2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7C2E6A9C-9C78-46AB-AFB0-44EC60F0F7E2}.Debug|Win32.Build.0 = Debug|Win32
+		{7C2E6A9C-9C78-46AB-AFB0-44EC60F0F7E2}.Release|Win32.ActiveCfg = Release|Win32
+		{7C2E6A9C-9C78-46AB-AFB0-44EC60F0F7E2}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
