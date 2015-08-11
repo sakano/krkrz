@@ -77,6 +77,7 @@ tTJSNativeClassMethod::IsInstanceOf(tjs_uint32 flag,
 	if(membername == NULL)
 	{
 		if(!TJS_strcmp(classname, TJS_W("Function"))) return TJS_S_TRUE;
+        return TJS_S_FALSE;
 	}
 
 	return inherited::IsInstanceOf(flag, membername, hint, classname, objthis);
@@ -171,6 +172,7 @@ tTJSNativeClassProperty::IsInstanceOf(tjs_uint32 flag,
 	if(membername == NULL)
 	{
 		if(!TJS_strcmp(classname, TJS_W("Property"))) return TJS_S_TRUE;
+        return TJS_S_FALSE;
 	}
 
 	return inherited::IsInstanceOf(flag, membername, hint, classname, objthis);
@@ -483,6 +485,7 @@ tjs_error TJS_INTF_METHOD tTJSNativeFunction::IsInstanceOf(
 	if(membername == NULL)
 	{
 		if(!TJS_strcmp(classname, TJS_W("Function"))) return TJS_S_TRUE;
+        return TJS_S_FALSE;
 	}
 
 	return inherited::IsInstanceOf(flag, membername, hint, classname, objthis);
