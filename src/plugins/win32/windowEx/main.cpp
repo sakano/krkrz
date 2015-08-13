@@ -1585,6 +1585,7 @@ struct ConsoleEx
 		return TJS_S_OK;
 	}
 };
+/*
 NCB_ATTACH_FUNCTION_WITHTAG(restoreMaximize, Debug_console, Debug.console, ConsoleEx::restoreMaximize);
 NCB_ATTACH_FUNCTION_WITHTAG(maximize,        Debug_console, Debug.console, ConsoleEx::maximize);
 NCB_ATTACH_FUNCTION_WITHTAG(getRect,         Debug_console, Debug.console, ConsoleEx::getRect);
@@ -1592,7 +1593,7 @@ NCB_ATTACH_FUNCTION_WITHTAG(setPos,          Debug_console, Debug.console, Conso
 NCB_ATTACH_FUNCTION_WITHTAG(getPlacement,    Debug_console, Debug.console, ConsoleEx::getPlacement);
 NCB_ATTACH_FUNCTION_WITHTAG(setPlacement,    Debug_console, Debug.console, ConsoleEx::setPlacement);
 NCB_ATTACH_FUNCTION_WITHTAG(bringAfter,      Debug_console, Debug.console, ConsoleEx::bringAfter);
-
+*/
 
 ////////////////////////////////////////////////////////////////
 struct PadEx
@@ -1714,10 +1715,12 @@ NCB_GET_INSTANCE_HOOK(PadEx)
 		return obj;
 	}
 };
+/*
 NCB_ATTACH_CLASS_WITH_HOOK(PadEx, Pad)
 {
 	Method(     TJS_W("registerExEvent"),     &Class::registerExEvents);
 }
+*/
 ////////////////////////////////////////////////////////////////
 
 struct System
