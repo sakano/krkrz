@@ -104,7 +104,7 @@ struct CommandExecute
 
 #define		BUF_SIZE	1024
 
-	bool wait(LineCallbackT linecb, void *cbdata, int timeout = 0, DWORD cycle = WSO_LOOPTIMEOUT) {
+	bool wait(LineCallbackT linecb, void *cbdata, int timeout = 0, DWORD cycle = WSO_LOOPTIMEOUT, bool utf8 = false) {
 		// パイプから出力を読み込み
 		ttstr output;
 		DWORD cnt, last=::GetTickCount();
@@ -117,6 +117,7 @@ struct CommandExecute
 		tjs_char wbuf[BUF_SIZE+1];
 		bool rest = false;
 		int line = 0;
+		const UINT codePage = utf8 ? CP_UTF8 : CP_ACP;
 
 		if (!hasError()) while (true) {
 			if (cnt > 0) {
@@ -171,7 +172,7 @@ struct CommandExecute
 
 							//	マルチバイト文字列をワイド文字列に変換して ttstr に入れないと例外が出る
 							ZeroMemory(wbuf, sizeof(wbuf));
-							MultiByteToWideChar(0, 0, buf+start, pos-start, wbuf, sizeof(wbuf)-1);
+							MultiByteToWideChar(codePage, 0, buf+start, pos-start, wbuf, sizeof(wbuf)-1);
 							ttstr append(wbuf);
 
 							output += append;
@@ -189,7 +190,7 @@ struct CommandExecute
 				}
 				if ((rest = (start < cnt))) {
 					ZeroMemory(wbuf, sizeof(wbuf));
-					MultiByteToWideChar(0, 0, buf+start, cnt-start, wbuf, sizeof(wbuf)-1);
+					MultiByteToWideChar(codePage, 0, buf+start, cnt-start, wbuf, sizeof(wbuf)-1);
 					ttstr append(wbuf);
 
 					output += append;
@@ -523,12 +524,14 @@ tjs_error TJS_INTF_METHOD commandExecute(
 	if (numparams == 0) return TJS_E_BADPARAMCOUNT;
 	if (param[0]->Type() != tvtString) return TJS_E_INVALIDPARAM;
 
-	// コマンドライン/タイムアウト取得
+	// コマンドライン/タイムアウト/文字コード取得
 	int timeout = 0;
 	ttstr target(param[0]->GetString()), cmdprm;
+	bool utf8 = false;
 
 	if (numparams > 1) cmdprm  = param[1]->GetString();
 	if (numparams > 2) timeout = (tjs_int)*param[2];
+	if (numparams > 3) utf8 = param[3]->Type() != tvtVoid && (tjs_int)*param[3] != 0;
 
 	DWORD exit = ~0L;
 	bool haserr = true, timeouted = false;
@@ -537,7 +540,7 @@ tjs_error TJS_INTF_METHOD commandExecute(
 	iTJSDispatch2 *array = TJSCreateArrayObject();
 	if (array != 0) {
 		CommandExecute exec;
-		if (exec.start(target, cmdprm)) exec.wait(cmdExecLineCallback, array, timeout);
+		if (exec.start(target, cmdprm)) exec.wait(cmdExecLineCallback, array, timeout, WSO_LOOPTIMEOUT, utf8);
 		exit = exec.getExitCode(&haserr, &timeouted, &errmes);
 
 		vStdOut.SetObject(array, array);

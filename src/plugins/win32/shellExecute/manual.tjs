@@ -61,6 +61,7 @@ class System {
 	 * @param target プログラム
 	 * @param param 引数
 	 * @param timeout タイムアウト時間(ms)
+	 * @param utf8 コンソール出力をutf8として受け取るか   
 	 * @return %[
 	 *   status:   ok/error/timeoutのいずれかの文字列, 
 	 *   stdout:   コンソール出力文字列配列(改行で分離)
@@ -69,6 +70,6 @@ class System {
 	 *   ];
 	 * @description バックグラウンド処理はありません。実行対象のプログラムが終了するまで吉里吉里が停止します。
 	 */
-	function commandExecute(target, param, timeout = 0);
+	function commandExecute(target, param, timeout = 0, utf8 = false);
 };
 
