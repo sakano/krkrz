@@ -409,6 +409,7 @@ void TVPInitScriptEngine()
 	tTJSVariant val;
 
 	// Set debug mode
+#ifndef TVP_PUBLISH
 	if(TVPGetCommandLine(TJS_W("-debug"), &val) )
 	{
 		ttstr str(val);
@@ -426,6 +427,7 @@ void TVPInitScriptEngine()
 //			}
 		}
 	}
+#endif
 	// Set Read text encoding
 	if(TVPGetCommandLine(TJS_W("-readencoding"), &val) )
 	{
@@ -437,12 +439,14 @@ void TVPInitScriptEngine()
 #ifdef TVP_START_UP_SCRIPT_NAME
 	TVPStartupScriptName = TVP_START_UP_SCRIPT_NAME;
 #else
+#ifndef TVP_PUBLISH
 	// Set startup script name
 	if(TVPGetCommandLine(TJS_W("-startup"), &val) )
 	{
 		ttstr str(val);
 		TVPStartupScriptName = str;
 	}
+#endif
 #endif
 
 	// create script engine object

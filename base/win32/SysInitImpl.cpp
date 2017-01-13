@@ -1015,6 +1015,7 @@ void TVPBeforeSystemInit()
 	}
 
 	// check "-sel" option, to force show folder selection window
+#ifndef TVP_PUBLISH
 	if(!forcedataxp3 && TVPGetCommandLine(TJS_W("-sel")))
 	{
 		// sel option was set
@@ -1030,6 +1031,7 @@ void TVPBeforeSystemInit()
 		nosel = true;
 		forcesel = true;
 	}
+#endif
 
 	// check "content-data" directory
 	if(!forcedataxp3 && !nosel)
