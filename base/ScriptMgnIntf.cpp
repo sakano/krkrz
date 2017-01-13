@@ -417,14 +417,16 @@ void TVPInitScriptEngine()
 		{
 			TJSEnableDebugMode = true;
 			TVPAddImportantLog((const tjs_char *)TVPWarnDebugOptionEnabled);
-//			if(TVPGetCommandLine(TJS_W("-warnrundelobj"), &val) )
-//			{
-//				str = val;
-//				if(str == TJS_W("yes"))
-//				{
-					TJSWarnOnExecutionOnDeletingObject = true;
-//				}
-//			}
+            TJSWarnOnExecutionOnDeletingObject = true;
+
+			if(TVPGetCommandLine(TJS_W("-warnrundelobj"), &val) )
+			{
+				str = val;
+				if(str == TJS_W("no"))
+				{
+                    TJSWarnOnExecutionOnDeletingObject = false;
+				}
+			}
 		}
 	}
 #endif
