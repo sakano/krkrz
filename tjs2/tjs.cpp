@@ -148,7 +148,8 @@ tTJS::tTJS()
 		tTJSVariant val;
 
 		// Array
-		dsp = new tTJSArrayClass(); //TJSCreateArrayClass();
+        iTJSDispatch2 *dummy = TJSCreateArrayObject(&dsp);
+        dummy->Release();
 		val = tTJSVariant(dsp, NULL);
 		dsp->Release();
 		Global->PropSet(TJS_MEMBERENSURE, TJS_W("Array"), NULL, &val, Global);
