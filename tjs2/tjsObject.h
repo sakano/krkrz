@@ -370,7 +370,7 @@ public:
 // tTJSCustomObject
 //---------------------------------------------------------------------------
 
-#define TJS_NAMESPACE_DEFAULT_HASH_BITS 3
+#define TJS_NAMESPACE_DEFAULT_HASH_BITS 4
 
 extern tjs_int TJSObjectHashBitsLimit;
 	// this limits hash table size
