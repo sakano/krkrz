@@ -408,27 +408,6 @@ void TVPInitScriptEngine()
 
 	tTJSVariant val;
 
-	// Set eval expression mode
-	if(TVPGetCommandLine(TJS_W("-evalcontext"), &val) )
-	{
-		ttstr str(val);
-		if(str == TJS_W("global"))
-		{
-			TJSEvalOperatorIsOnGlobal = true;
-			TJSWarnOnNonGlobalEvalOperator = true;
-		}
-	}
-
-	// Set igonre-prop compat mode
-	if(TVPGetCommandLine(TJS_W("-unaryaster"), &val) )
-	{
-		ttstr str(val);
-		if(str == TJS_W("compat"))
-		{
-			TJSUnaryAsteriskIgnoresPropAccess = true;
-		}
-	}
-
 	// Set debug mode
 	if(TVPGetCommandLine(TJS_W("-debug"), &val) )
 	{
